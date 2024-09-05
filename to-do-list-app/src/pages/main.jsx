@@ -28,29 +28,32 @@ const MainPage = () => {
 
     const pushNewAction = (title) => {
         setArr(prev => {
-            const newArr = [...prev, {name: title, color: generateNewCL()}]
+            let newArr;
+            prev != null ? 
+                newArr = [...prev, {name: title, color: generateNewCL()}] : 
+                newArr = [{name: title, color: generateNewCL()}] //fixed an issue, which was caused by empty array
             localStorage.setItem('to-do array', JSON.stringify(newArr))
             return newArr;
         });
     }
 
-    const removeAnAction = (num) => {
+    const removeAnAction = (indexKeeper) => {
         setArr(oldArr => {
-            const newArr = oldArr.filter((_,index) => index!==(num-1))
+            const newArr = oldArr.filter((_,index) => index!==(indexKeeper-1))
             localStorage.setItem('to-do array', JSON.stringify(newArr)) 
             return newArr;
         })
     }
 
-
+    // ----------
 
     return (
         <>
             <section className='mainActivity'>
                 <AddNewToDo pushing = {pushNewAction}/>
-                {arr == undefined ? console.log("nothing") : arr.map(child => {
+                {arr == null ? console.log("nothing added into to-do array. Array is empty. List of to-dos is empty") : arr.map(child => {
                     keyMaker++;
-                    return (<EachContainer name={child.name} color={child.color} key={keyMaker} indexOfContainer={keyMaker} remove={removeAnAction}/>) //прокинул indexOfContainer, дабы было какое-то говорящее название. Если key требует React, то indexOfContainer требую я, дабы файл был читабельным.
+                    return (<EachContainer name={child.name} color={child.color} key={keyMaker} indexOfContainer={keyMaker} remove={removeAnAction} />) //прокинул indexOfContainer, дабы было какое-то говорящее название. Если key требует React, то indexOfContainer требую я, дабы файл был читабельным.
                 })}
             </section>
         </>

@@ -1,8 +1,9 @@
-import React, {useState} from 'react'
+import React from 'react'
 
 
 
 const EachContainer = (props) => {
+    
 
     return (
         <article className='toDoArticle'>
@@ -14,7 +15,7 @@ const EachContainer = (props) => {
                 {props.name}
             </h3>
 
-            <button onClick={()=>{props.remove(props.indexOfContainer)}} className='removeButton'>
+            <button onClick={()=>{props.remove(props.indexOfContainer)}} className='eachContainerButton'>
                 -
             </button>
         </article>
