@@ -31,7 +31,7 @@ const MainPage = () => {
             let newArr;
             prev != null ? 
                 newArr = [...prev, {name: title, color: generateNewCL()}] : 
-                newArr = [{name: title, color: generateNewCL()}] //fixed an issue, which was caused by empty array
+                newArr = [{name: title, color: generateNewCL()}] //fixed the issue, which was caused by empty array
             localStorage.setItem('to-do array', JSON.stringify(newArr))
             return newArr;
         });
